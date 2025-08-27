@@ -41,3 +41,21 @@ npm i -D @types/mongoose - if required
 #Setup globle error handling
 npm i http-errors
 npm i -D @types/http-errors
+
+
+TODO:
+User Registration Endpoint Creation
+JWT Token Config
+AdvanceD Error Handling
+User Login Endpoint Creation
+CRUD Of User 'Book Resource'
+Create Book Endpoint
+ - Multer Package Integration (Multipart File Handling Package)
+ - Cloudinary Config (File Upload Cloud Platform/Service)
+ - Temporary File Deletion
+Upload Book Endpoint
+Get All Books Endpoint
+Get Single Book Endpoint
+Delete Book Endpoint
+Testing of all APIs
+CORS Config
