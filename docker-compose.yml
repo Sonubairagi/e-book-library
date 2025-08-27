@@ -1,0 +1,21 @@
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: ebook-library-mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - "27017:27017"
+        # volumes:
+        #     - mongo-data:/data/db
+        # networks:
+        #     - ebook-network
+
+    # networks:
+    #     ebook-network:
+    #         driver: bridge
+
+    # volumes:
+    #     mongo-data:
+    #         driver: local

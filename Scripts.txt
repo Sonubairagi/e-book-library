@@ -1,0 +1,43 @@
+#Project Initialization:
+npm init -y
+
+#TypeScript Setup:
+npm install -D typescript nodemon ts-node @types/node
+npx tsc --init
+
+#Script & Nodemon Setup:
+add dev script in package.json
+npm run dev
+
+#Config Git Setup:
+Install gitignore extention
+
+#Config Eslint:
+npm init @eslint/config
+Install ESLint by Microsoft extention
+
+#Prettier:
+Install Prettier extention
+Enable Format on save in vscode settings
+Configure formatting rules
+
+#Install express:
+npm install express
+npm i -D @types/express
+
+#Install Chrom extension:
+e.g., JSON Beutifier
+
+#Config evn:
+npm i dotenv
+npm i -D @types/dotenv
+Create config.ts
+
+#Config Database:
+##MongoDB:
+npm i mongoose
+npm i -D @types/mongoose - if required
+
+#Setup globle error handling
+npm i http-errors
+npm i -D @types/http-errors
