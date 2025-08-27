@@ -1,15 +1,15 @@
 import express from "express";
-import createHttpError from "http-errors";
 import globalErrorHandler from "./middlewares/globleErrorHandler.ts";
+import authRouter from "./auth/authRouter.ts";
 
 const app = express();
 
+//Middlewares
+// app.use(cors())
+app.use(express.json())
+
 //Routes
-app.get("/", (req, res) => {
-    const error = createHttpError(400, "FuckYou!");
-    throw error;
-    res.json({ message: "Welcome to EBL!" });
-});
+app.use("/api/v1/auth", authRouter);
 
 //Global Error Handling
 app.use(globalErrorHandler);

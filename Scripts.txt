@@ -43,6 +43,17 @@ npm i http-errors
 npm i -D @types/http-errors
 
 
+
+#Passwork Hashing(crypto) config:
+
+#JWT Config:
+
+
+#CORS Config:
+
+
+
+
 TODO:
 User Registration Endpoint Creation
 JWT Token Config
