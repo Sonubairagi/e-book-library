@@ -29,7 +29,7 @@ const partialUpdateBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Update book to DB
   //TODO: Send response
 
-  return res.json("Book created");
+  return res.json("Book Updated Partially");
 }
 
 //Full Update Book
@@ -46,7 +46,7 @@ const fullUpdateBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Update book to DB
   //TODO: Send response
 
-  return res.json("Book created");
+  return res.json("Book Updated Fully");
 }
 
 //Get Single Book
@@ -58,7 +58,7 @@ const getBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Get book from DB
   //TODO: Send response
   
-  return res.json("Book created");
+  return res.json("Get Single Book");
 }
 
 //Get All Books
@@ -68,7 +68,7 @@ const getAllBooks = (req: Request, res: Response, next: NextFunction) => {
   //TODO: get all books from DB
   //TODO : Send response
 
-  return res.json("Book created");
+  return res.json("Get All Books");
 }
 
 //Delete Book
@@ -80,7 +80,7 @@ const deleteBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Delete book from DB
   //TODO: Send response
 
-  return res.json("Book created");
+  return res.json("Book Deleted Successfully!");
 }
 
 export { createBook, partialUpdateBook, fullUpdateBook, getBook, getAllBooks, deleteBook };

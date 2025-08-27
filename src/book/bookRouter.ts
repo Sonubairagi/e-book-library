@@ -1,13 +1,13 @@
 import express from "express";
-import { createBook, deleteBook, fullUpdateBook, getAllBooks, getBook, partialUpdateBook } from "./bookController.ts";
+import * as bookHandler from "./bookController.ts";
 
 const bookRouter = express.Router();
 
-bookRouter.post("/", createBook);
-bookRouter.patch("/:bookId", partialUpdateBook);
-bookRouter.put("/:bookId", fullUpdateBook);
-bookRouter.get("/:bookId", getBook);
-bookRouter.get("/", getAllBooks);
-bookRouter.delete("/:bookId", deleteBook);
+bookRouter.post("/", bookHandler.createBook);
+bookRouter.patch("/:bookId", bookHandler.partialUpdateBook);
+bookRouter.put("/:bookId", bookHandler.fullUpdateBook);
+bookRouter.get("/:bookId", bookHandler.getBook);
+bookRouter.get("/", bookHandler.getAllBooks);
+bookRouter.delete("/:bookId", bookHandler.deleteBook);
 
 export default bookRouter;
