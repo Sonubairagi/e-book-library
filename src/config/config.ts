@@ -3,7 +3,7 @@ conf();
 
 const _config = {
     port: process.env.PORT,
-    databaseURL: process.env.DATABASE_CONNNECTION_STRING,
+    databaseURL: process.env.DATABASE_CONNECTION_STRING,
     environment: process.env.NODE_ENV,
 };
 
