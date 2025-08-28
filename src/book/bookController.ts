@@ -7,9 +7,7 @@ const createBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Extract data from req.body
   //TODO: Extract file data by the help of multer
   //TODO: Validate data
-  //TODO: Save Image and PDF file to cloudinary
-  //TODO: Delete temporary files from local storage
-  //TODO: Save book to DB
+  //TODO: Save book
   //TODO: Send response
 
   return res.json("Book created");
@@ -22,11 +20,7 @@ const partialUpdateBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Extract data from req.body
   //TODO: Extract file data by the help of multer
   //TODO: Validate data
-  //TODO: Check book existance in db
-  //TODO: Update Image and PDF file to cloudinary
-  //TODO: If new file uploaded, then delete previous file from cloudinary
-  //TODO: Delete temporary files from local storage
-  //TODO: Update book to DB
+  //TODO: Update book partially
   //TODO: Send response
 
   return res.json("Book Updated Partially");
@@ -39,11 +33,7 @@ const fullUpdateBook = (req: Request, res: Response, next: NextFunction) => {
   //TODO: Extract data from req.body
   //TODO: Extract file data by the help of multer
   //TODO: Validate data
-  //TODO: Check book existance in db
-  //TODO: Update Image and PDF file to cloudinary
-  //TODO: If new file uploaded, then delete previous file from cloudinary
-  //TODO: Delete temporary files from local storage
-  //TODO: Update book to DB
+  //TODO: Update book fully
   //TODO: Send response
 
   return res.json("Book Updated Fully");
@@ -55,7 +45,7 @@ const getBook = (req: Request, res: Response, next: NextFunction) => {
 
   //TODO: Extract bookId from req.params
   //TODO: Validate bookId
-  //TODO: Get book from DB
+  //TODO: Get book by id
   //TODO: Send response
   
   return res.json("Get Single Book");
@@ -65,7 +55,7 @@ const getBook = (req: Request, res: Response, next: NextFunction) => {
 const getAllBooks = (req: Request, res: Response, next: NextFunction) => {
   // Logic to create a book
 
-  //TODO: get all books from DB
+  //TODO: get all books
   //TODO : Send response
 
   return res.json("Get All Books");
@@ -77,7 +67,7 @@ const deleteBook = (req: Request, res: Response, next: NextFunction) => {
 
   //TODO: Extract bookId from req.params
   //TODO: Validate bookId
-  //TODO: Delete book from DB
+  //TODO: Delete book by id
   //TODO: Send response
 
   return res.json("Book Deleted Successfully!");
