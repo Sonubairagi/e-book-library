@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 import type { User } from "./authType.ts";
 
 const authSchema = new mongoose.Schema<User>({
-  _id: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
     required: true,

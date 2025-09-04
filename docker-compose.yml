@@ -7,15 +7,32 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: example
         ports:
             - "27017:27017"
-        # volumes:
-        #     - mongo-data:/data/db
-        # networks:
-        #     - ebook-network
+        volumes:
+            - mongo-data:/data/db
+        networks:
+            - ebook-network
 
-    # networks:
-    #     ebook-network:
-    #         driver: bridge
+    # mongo-express:
+    #     image: mongo-express:latest
+    #     container_name: ebook-library-mongo-express
+    #     environment:
+    #         ME_CONFIG_MONGODB_ADMINUSERNAME: root
+    #         ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    #         ME_CONFIG_MONGODB_SERVER: mongo
+    #     ports:
+    #         - "8081:8081"
+    #     restart: always
+    #     depends_on:
+    #         - mongodb
+    #     networks:
+    #         - ebook-network
+    #     volumes:
+    #         - mongo-express-data:/data/db
 
-    # volumes:
-    #     mongo-data:
-    #         driver: local
+networks:
+    ebook-network:
+        driver: bridge
+
+volumes:
+    mongo-data:
+    # mongo-express-data:

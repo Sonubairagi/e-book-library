@@ -42,13 +42,22 @@ npm i -D @types/mongoose - if required
 npm i http-errors
 npm i -D @types/http-errors
 
-#Passwork Hashing(crypto) config:
+#Passwork Hashing(bcrypt) config:
+npm i bcrypt
+npm i -D @types/bcrypt
 
 #JWT Config:
+npm i jsonwebtoken
+npm i -D @types/jsonwebtoken
 
 #Setup Cloudinary
 
 #CORS Config:
+
+#Config Debugging:
+npm i debug --save
+npm i -D @types/debug
+
 
 
 
