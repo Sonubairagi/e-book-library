@@ -17,4 +17,19 @@ const startServer = async () => {
     });
 };
 
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception!", err);
+  // Optionally alert devs or log externally
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection!", reason);
+  // Log it, alert it, etc.
+});
+
+process.on("ReferenceError", (reason, promise) => {
+  console.error("ReferenceError!", reason);
+  // Log it, alert it, etc.
+});
+
 startServer();

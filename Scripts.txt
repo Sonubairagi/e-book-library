@@ -50,9 +50,18 @@ npm i -D @types/bcrypt
 npm i jsonwebtoken
 npm i -D @types/jsonwebtoken
 
+#Config Multer
+npm i multer
+npm i -D @types/multer
+
 #Setup Cloudinary
+npm i cloudinary
 
 #CORS Config:
+
+#Async Error Handling
+npm install express-async-handler
+
 
 #Config Debugging:
 npm i debug --save

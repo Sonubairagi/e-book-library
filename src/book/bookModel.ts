@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 import type { Book } from "./bookType.ts";
 
 const bookSchema = new mongoose.Schema<Book>({
-  _id: {
-    type: String,
-    required: true,
-  },
   title: {
     type: String,
     required: true,

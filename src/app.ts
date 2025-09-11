@@ -5,17 +5,21 @@ import bookRouter from "./book/bookRouter.ts";
 
 const app = express();
 
-//Middlewares
-// app.use(cors())
-app.use(express.json())
+try {
+    //Middlewares
+    // app.use(cors())
+    app.use(express.json())
 
-//Routes
-//Auth Router
-app.use("/api/v1/auth", authRouter);
-//Book Router
-app.use("/api/v1/books", bookRouter);
+    //Routes
+    //Auth Router
+    app.use("/api/v1/auth", authRouter);
+    //Book Router
+    app.use("/api/v1/book", bookRouter);
 
-//Global Error Handling
-app.use(globalErrorHandler);
+    //Global Error Handling
+    app.use(globalErrorHandler);
+} catch (error) {
+    console.log("Error in app.ts", error);
+}
 
 export default app;
