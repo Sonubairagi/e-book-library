@@ -1,14 +1,40 @@
+import e from "express";
+import cloudinary from "../config/cloudinary.ts";
+import bookModel from "./bookModel.ts";
 import type { Book } from "./bookType.ts";
+import path from "node:path";
 
 //Create book
-export const createBook = async(book: Book): Promise<Book | null> => {
+export const createBook = async(title: string, genre: string, userId: string, secure_urls: string[]): Promise<Book | null> => {
 
-  //TODO: Validate data
-  //TODO: Save Image and PDF file to cloudinary
-  //TODO: Delete temporary files from local storage
-  //TODO: return response
-  
-  return null;
+  const savedBook = await bookModel.create({
+    title,
+    genre,
+    author: userId,
+    coverImage: secure_urls[0],
+    file: secure_urls[1],
+  })
+
+  return savedBook;
+}
+
+export const saveFilestoCloudinary = async(coverFileName: string, coverFilePath: string, coverFileMimeType: string, pdfFileName: string, pdfFilePath: string, pdfFileMimeType: string): Promise<string[] | null> => {
+
+  const uploadCoverImageFileResultObject = await cloudinary.uploader.upload(coverFilePath, {
+    public_id: path.parse(coverFileName).name,
+    format: coverFileMimeType || 'auto',
+    folder: "ebooks/covers",
+  });
+
+  const uploadPdfFileResultObject = await cloudinary.uploader.upload(pdfFilePath, {
+    resource_type: "raw",
+    public_id: path.parse(pdfFileName).name,
+    format: pdfFileMimeType || 'auto',
+    folder: "ebooks/pdfs",
+  })
+
+  const secure_urls = [uploadCoverImageFileResultObject.secure_url, uploadPdfFileResultObject.secure_url];
+  return secure_urls;
 }
 
 //Upadate Full book

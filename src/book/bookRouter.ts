@@ -3,6 +3,7 @@ import * as bookHandler from "./bookController.ts";
 import multer from "multer";
 import { fileURLToPath } from 'url';
 import path from "node:path";
+import authenticator from "../middlewares/authenticator.ts";
 
 // 👇 Recreate __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -16,7 +17,7 @@ try {
         dest: path.resolve(__dirname, "../../public/data/uploads"),
         limits: { fileSize: 3e7 }, //30MB
     })
-    bookRouter.post("/", upload.fields([
+    bookRouter.post("/", authenticator, upload.fields([
         { name: "coverImage", maxCount: 1 },
         { name: "file", maxCount: 1 },
 

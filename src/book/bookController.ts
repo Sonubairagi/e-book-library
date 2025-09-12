@@ -1,33 +1,61 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import type { promises } from "node:dns";
+import { fileURLToPath } from 'url';
+import path from "node:path";
+import * as BookService from "./bookService.ts";
+import fs from "node:fs";
+import type { AuthRequest } from "../middlewares/authenticator.ts";
+
+// 👇 Recreate __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //Create Book
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
 
-  console.log(req.files);
+  try {
 
-  //Extract data from req.body
+     console.log(req.files);
+
+  // Extract data from req.body
   const { title, genre } = req.body;
 
-  //TODO: Extract file data by the help of multer
+  // Extract file data by the help of multer
   const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-  const fineName = files?.coverImage?.[0]?.filename;
-  const filePath = files?.coverImage?.[0]?.path;
-  const fileMimeType = files?.coverImage?.[0]?.mimetype?.split('/')?.[1];
+  const coverFileName = files?.coverImage?.[0]?.filename ?? '';
+  const coverFilePath = path.resolve(__dirname, "../../public/data/uploads", coverFileName);
+  const coverFileMimeType = files?.coverImage?.[0]?.mimetype?.split('/')?.[1];
 
-  //TODO: Validate data
+  const pdfFileName = files?.file?.[0]?.filename ?? '';
+  const pdfFilePath = path.resolve(__dirname, "../../public/data/uploads", pdfFileName);
+  const pdfFileMimeType = files?.file?.[0]?.mimetype?.split('/')?.[1];
+
+  // Validate data
   if (!title || !genre || !files?.coverImage || !files?.file) {
     const err = createHttpError(400, "All fields are required");
     return next(err);
   }
 
-  //TODO: Save book
+  // Save files on cloudinary
+  const secure_urls: string[] | null = await BookService.saveFilestoCloudinary(coverFileName, coverFilePath, coverFileMimeType || 'auto', pdfFileName, pdfFilePath, pdfFileMimeType || 'auto');
 
+  // Save book
+  const _req = req as AuthRequest;
+  console.log("_req.userId Controller:", _req.userId);
+  
+  const savedBook = await BookService.createBook(title, genre, _req.userId, secure_urls || []);
 
-  //TODO: Send response
+  // Delete temporary files from local storage
+  await fs.promises.unlink(coverFilePath);
+  await fs.promises.unlink(pdfFilePath);
 
-  return res.json("Book created");
+  // Send response
+  return res.status(201).json(savedBook);
+
+  } catch (error) {
+    return next(error);
+  }
+
 }
 
 //Partial Update Book
