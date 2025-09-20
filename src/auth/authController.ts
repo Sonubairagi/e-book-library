@@ -26,7 +26,8 @@ const registerHandler = async (req: Request, res: Response, next: NextFunction) 
 }
 
 const loginHandler = async (req: Request, res: Response, next: NextFunction) => {
-  // Login logic here
+
+  try {
 
   //EExtract data from req
   const { email, password} = req.body;
@@ -42,6 +43,17 @@ const loginHandler = async (req: Request, res: Response, next: NextFunction) => 
 
   //Send response
   res.status(201).json({ accessToken });
+
+  } catch(error: unknown) {
+    if (error instanceof Error) {
+      console.log("Error occured in loginHandler: ", error.message);
+      const err = createHttpError(500, error.message);
+      next(err);
+    } else {
+      next('An unknown error occurred');
+    }
+  }
+  
 }
 
 export default { registerHandler, loginHandler };

@@ -12,10 +12,13 @@ const globalErrorHandler = (
     const message = err.message || "Something went wrong";
     const stackTrace = config.environment === "development" ? err.stack : "";
 
+    console.log("Error occured inside globalErrorHandler: ", message);
+
     return res.status(statusCode).json({
         message: message,
         errorStack: stackTrace,
     });
+    next();
 };
 
 export default globalErrorHandler;

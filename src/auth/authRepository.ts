@@ -13,4 +13,10 @@ const getUserByEmail = async (email: string): Promise<User | null> => {
   return isUserExists;
 }
 
-export default { saveUser, getUserByEmail };
+// Get User by id
+const getUserById = async (id: string): Promise<User | null> => {
+  const user = authModel.findById(id);
+  return user;
+}
+
+export default { saveUser, getUserByEmail, getUserById };

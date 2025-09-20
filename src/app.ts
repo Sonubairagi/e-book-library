@@ -2,12 +2,16 @@ import express from "express";
 import globalErrorHandler from "./middlewares/globleErrorHandler.ts";
 import authRouter from "./auth/authRouter.ts";
 import bookRouter from "./book/bookRouter.ts";
+import { config } from "./config/config.ts";
+import cors from 'cors';
 
 const app = express();
 
 try {
     //Middlewares
-    // app.use(cors())
+    app.use(cors({
+        origin: config.frontendDomain,
+    }));
     app.use(express.json())
 
     //Routes
@@ -23,3 +27,4 @@ try {
 }
 
 export default app;
+

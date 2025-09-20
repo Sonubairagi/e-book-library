@@ -17,16 +17,29 @@ try {
         dest: path.resolve(__dirname, "../../public/data/uploads"),
         limits: { fileSize: 3e7 }, //30MB
     })
+
     bookRouter.post("/", authenticator, upload.fields([
         { name: "coverImage", maxCount: 1 },
         { name: "file", maxCount: 1 },
 
     ]), bookHandler.createBook);
+
     bookRouter.get("/all", bookHandler.getAllBooks);
     bookRouter.get("/:bookId", bookHandler.getBook);
-    bookRouter.put("/:bookId", bookHandler.fullUpdateBook);
-    bookRouter.patch("/:bookId", bookHandler.partialUpdateBook);
-    bookRouter.delete("/:bookId", bookHandler.deleteBook);
+
+    bookRouter.put("/:bookId", authenticator, upload.fields([
+        { name: "coverImage", maxCount: 1 },
+        { name: "file", maxCount: 1 },
+
+    ]), bookHandler.fullUpdateBook);
+
+    bookRouter.patch("/:bookId", authenticator, upload.fields([
+        { name: "coverImage", maxCount: 1 },
+        { name: "file", maxCount: 1 },
+
+    ]), bookHandler.partialUpdateBook);
+    
+    bookRouter.delete("/:bookId", authenticator, bookHandler.deleteBook);
 
 } catch (error) {
     console.log("Error in bookRouter.ts", error);

@@ -7,6 +7,6 @@ export interface Book {
   genre: string;
   coverImage: string;
   file: string;
-  createdAt: Date;
+  createdAt?: Date;
   updatedAt: Date;
 }
