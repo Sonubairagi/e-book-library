@@ -5,7 +5,7 @@ import pkg from "jsonwebtoken";
 import { config } from "../config/config.ts";
 
 //Register
-export const registerUser = async(user: User): Promise<User | null> => {
+export const registerUser = async(user: User): Promise<string | null> => {
     
     //Check if user already exists
     const isUserExists = await authRepository.getUserByEmail(user.email);
@@ -18,13 +18,16 @@ export const registerUser = async(user: User): Promise<User | null> => {
     const hashedPassword = await bcrypt.hash(user.password, 10);
     
     //Save user
-    const savedUser = await authRepository.saveUser({
+    await authRepository.saveUser({
         name: user.name,
         email: user.email,
         password: hashedPassword
     });
 
-    return savedUser;
+    //TODO: Generate JWT
+    const accessToken = await generateAccessToken(user._id as string);
+
+    return accessToken;
 }
 
 //Login
